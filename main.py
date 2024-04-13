@@ -15,12 +15,6 @@ import shutil
 from collections import OrderedDict
 
 def calculate_folder_size(folder_path):
-    total_size = 0
-    for dirpath, dirnames, filenames in os.walk(folder_path):
-        for filename in filenames:
-            filepath = os.path.join(dirpath, filename)
-            total_size += os.path.getsize(filepath)
-    return total_size
     """
     计算指定文件夹的总大小。
 
@@ -30,6 +24,12 @@ def calculate_folder_size(folder_path):
     返回:
     - total_size: 整数，文件夹的总大小，以字节为单位。
     """
+    total_size = 0
+    for dirpath, dirnames, filenames in os.walk(folder_path):
+        for filename in filenames:
+            filepath = os.path.join(dirpath, filename)
+            total_size += os.path.getsize(filepath)
+    return total_size
 
 def convert_json_to_custom_yaml(json_file_path, dirname):
     """
