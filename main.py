@@ -35,13 +35,26 @@ def convert_json_to_custom_yaml(json_file_path, dirname):
     """
     将JSON文件内容转换为定制的YAML格式。
 
-    参数:
+    参数：
     - json_file_path: 字符串，JSON文件的路径。
     - dirname: 字符串，包含JSON文件的目录名称，用于构建下载链接。
 
-    返回:
+    返回：
     - yaml_contents: 字符串，转换后的YAML内容。
     """
+    try:
+        with open(json_file_path, 'r', encoding='utf-8') as json_file:
+            json_data = json.load(json_file)
+    except FileNotFoundError:
+        print(f"文件 {json_file_path} 未找到。")
+        return ""
+    except json.JSONDecodeError:
+        print(f"文件 {json_file_path} 格式不正确。")
+        return ""
+    except Exception as e:
+        print(f"读取JSON文件时发生错误: {e}")
+        return ""
+    
     with open(json_file_path, 'r', encoding='utf-8') as json_file:
         json_data = json.load(json_file)
 
