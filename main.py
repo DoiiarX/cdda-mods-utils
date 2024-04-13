@@ -21,10 +21,27 @@ def calculate_folder_size(folder_path):
             filepath = os.path.join(dirpath, filename)
             total_size += os.path.getsize(filepath)
     return total_size
+    """
+    计算指定文件夹的总大小。
 
+    参数:
+    - folder_path: 字符串，表示文件夹的路径。
 
+    返回:
+    - total_size: 整数，文件夹的总大小，以字节为单位。
+    """
 
 def convert_json_to_custom_yaml(json_file_path, dirname):
+    """
+    将JSON文件内容转换为定制的YAML格式。
+
+    参数:
+    - json_file_path: 字符串，JSON文件的路径。
+    - dirname: 字符串，包含JSON文件的目录名称，用于构建下载链接。
+
+    返回:
+    - yaml_contents: 字符串，转换后的YAML内容。
+    """
         with open(json_file_path, 'r', encoding='utf-8') as json_file:
             json_data = json.load(json_file)
 
@@ -98,6 +115,9 @@ def convert_json_to_custom_yaml(json_file_path, dirname):
 
 
 def find_folders_and_convert_json():
+    """
+    查找当前目录下的所有文件夹，并尝试转换包含的modinfo.json文件。
+    """
     current_directory = os.getcwd()
     folders = [f for f in os.listdir(current_directory) if os.path.isdir(os.path.join(current_directory, f))]
 
@@ -121,6 +141,9 @@ def find_folders_and_convert_json():
 
 
 def create_zip_files():
+    """
+    压缩当前目录下的每个文件夹为ZIP文件。
+    """
     current_directory = os.getcwd()
     folders = [f for f in os.listdir(current_directory) if os.path.isdir(os.path.join(current_directory, f))]
 
